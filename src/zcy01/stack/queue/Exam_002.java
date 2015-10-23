@@ -1,0 +1,50 @@
+package zcy01.stack.queue;
+
+import java.util.Stack;
+
+public class Exam_002 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class QueueByStack<T> {
+	private Stack<T> stackIn;
+	private Stack<T> stackOut;
+
+	public QueueByStack() {
+		stackIn = new Stack<T>();
+		stackOut = new Stack<T>();
+	}
+
+	public T add(T t) {
+
+		return this.stackIn.push(t);
+	}
+
+	public T poll() {
+		if (this.stackOut.isEmpty()) {
+			while (!this.stackIn.isEmpty()) {
+				this.stackOut.push(this.stackIn.pop());
+			}
+		}
+		return this.stackOut.pop();
+
+	}
+
+	public T peek() {
+		if (this.stackOut.isEmpty()) {
+			while (!this.stackIn.isEmpty()) {
+				this.stackOut.push(this.stackIn.pop());
+			}
+		}
+		return this.stackOut.peek();
+	}
+
+	public boolean isEmpty() {
+		return this.stackIn.isEmpty() && this.stackOut.empty();
+	}
+}
