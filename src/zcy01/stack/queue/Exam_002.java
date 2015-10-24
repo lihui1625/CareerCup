@@ -5,7 +5,21 @@ import java.util.Stack;
 public class Exam_002 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		QueueByStack<Integer> stack = new QueueByStack<Integer>();
+		stack.add(3);
+		stack.add(2);
+		stack.add(1);
+		stack.add(5);
+		stack.add(4); 
+		System.out.println("" + stack.poll());
+		System.out.println("" + stack.poll());
+		System.out.println("" + stack.poll());
+		stack.add(15);
+		stack.add(14); 
+		System.out.println("" + stack.poll());
+		System.out.println("" + stack.poll()); 
+		System.out.println("" + stack.poll());
+		System.out.println("" + stack.poll()); 
 
 	}
 
