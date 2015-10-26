@@ -3,6 +3,8 @@
  */
 package zcy04.recursion.dynamic;
 
+import java.security.InvalidParameterException;
+
 /**
  * @author hui.li
  *
@@ -47,6 +49,9 @@ public class Exam_055 {
 	}
 
 	static private int[][] matrixPower(int[][] m, int n) {
+		if(n<0){
+			throw new InvalidParameterException(" N should be greater than 0! ");
+		}
 		int[][] result = new int[m.length][m.length];
 		for (int i = 0; i < m.length; i++) {
 			result[i][i] = 1;
