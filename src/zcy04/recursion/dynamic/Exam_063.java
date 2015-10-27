@@ -4,10 +4,12 @@ import java.util.Random;
 
 public class Exam_063 {
 
+ 
+
 	public static int editDistance(String s1, String s2, int ic, int dc, int rc) {
-		
-		int newRC = Math.min(dc+ic, rc);
-		
+
+		int newRC = Math.min(dc + ic, rc);
+
 		if (s1 == null && s2 == null) {
 			return 0;
 		}
@@ -20,29 +22,28 @@ public class Exam_063 {
 
 		int len1 = s1.length();
 		int len2 = s1.length();
-		
-		int[][] dp = new int[len1+1][len2+1];
+
+		int[][] dp = new int[len1 + 1][len2 + 1];
 		dp[0][0] = 0;
-		
-		for(int i=1;i<=len1;i++){
-			dp[i][0] = i*ic;
+
+		for (int i = 1; i <= len1; i++) {
+			dp[i][0] = i * ic;
 		}
-		for(int j=1;j<=len2;j++){
-			dp[0][j] = j*dc;
+		for (int j = 1; j <= len2; j++) {
+			dp[0][j] = j * dc;
 		}
-		
-		for(int i=1;i<=len1;i++){
-			for(int j=1;j<=len2;j++){
-				if(s1.charAt(i-1)==s2.charAt(j-1)){
-					dp[i][j] = dp[i-1][j-1];
-				}
-				else{
-					int v1 = dp[i][j-1] + 1*ic;
-					int v2 = dp[i-1][j] + 1*dc;
-					int v3 = dp[i][j] + 1*newRC; 
+
+		for (int i = 1; i <= len1; i++) {
+			for (int j = 1; j <= len2; j++) {
+				if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+					dp[i][j] = dp[i - 1][j - 1];
+				} else {
+					int v1 = dp[i][j - 1] + 1 * ic;
+					int v2 = dp[i - 1][j] + 1 * dc;
+					int v3 = dp[i][j] + 1 * newRC;
 					dp[i][j] = Math.min(Math.min(v1, v2), v3);
 				}
-				
+
 			}
 		}
 
@@ -64,19 +65,16 @@ public class Exam_063 {
 		for (int i = 0; i < N; i++) {
 			a2[i] = (char) (r.nextInt(4) + 'A');
 		}
-		
+
 		String s1 = (new String(a1));
 		String s2 = (new String(a2));
 
-		 s1 = "abc";
-		 s2 = "adc";
+		s1 = "AB";
+		s2 = "12"; 
 		System.out.println(s1);
-		System.out.println(s2);
+		System.out.println(s2); 
 
-		int ic = 5;
-		int dc = 3;
-		int rc = 100;
-		int result = editDistance(s1, s2, ic, dc, rc);
+		int result = editDistance(s1, s2 ,2,3,7);
 		System.out.println(result);
 
 	}
