@@ -19,11 +19,14 @@ public class HashTest {
 	 Object objectVar;
 	 A aVar;
 	 List<A> listVar;
-	 Map<String, A> mapVar;
+	 Map<String, A> mapVar;	
+	 HashTest hashTestVar;
+	 HashTest[] hashTestArrayVar; 
 	 long[] longArrayVar;
 	 A[] socketArrayVar;
-	 HashTest hashTestVar;
-	 HashTest[] hashTestArrayVar;
+	 HashTest[][] hashTestArray2Var; 
+	 long[][] longArray2Var;
+	 A[][] socketArray2Var;
 	 
 	@Override
 	public int hashCode() {
@@ -36,22 +39,24 @@ public class HashTest {
 		temp = Double.doubleToLongBits(doubleVar);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + Float.floatToIntBits(floatVar);
+		result = prime * result + Arrays.hashCode(hashTestArray2Var);
 		result = prime * result + Arrays.hashCode(hashTestArrayVar);
 		result = prime * result
 				+ ((hashTestVar == null) ? 0 : hashTestVar.hashCode());
 		result = prime * result + intVar;
 		result = prime * result + ((listVar == null) ? 0 : listVar.hashCode());
+		result = prime * result + Arrays.hashCode(longArray2Var);
 		result = prime * result + Arrays.hashCode(longArrayVar);
 		result = prime * result + (int) (longVar ^ (longVar >>> 32));
 		result = prime * result + ((mapVar == null) ? 0 : mapVar.hashCode());
 		result = prime * result
 				+ ((objectVar == null) ? 0 : objectVar.hashCode());
+		result = prime * result + Arrays.hashCode(socketArray2Var);
 		result = prime * result + Arrays.hashCode(socketArrayVar);
 		result = prime * result
 				+ ((stringVar == null) ? 0 : stringVar.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -76,6 +81,8 @@ public class HashTest {
 		if (Float.floatToIntBits(floatVar) != Float
 				.floatToIntBits(other.floatVar))
 			return false;
+		if (!Arrays.deepEquals(hashTestArray2Var, other.hashTestArray2Var))
+			return false;
 		if (!Arrays.equals(hashTestArrayVar, other.hashTestArrayVar))
 			return false;
 		if (hashTestVar == null) {
@@ -89,6 +96,8 @@ public class HashTest {
 			if (other.listVar != null)
 				return false;
 		} else if (!listVar.equals(other.listVar))
+			return false;
+		if (!Arrays.deepEquals(longArray2Var, other.longArray2Var))
 			return false;
 		if (!Arrays.equals(longArrayVar, other.longArrayVar))
 			return false;
@@ -104,6 +113,8 @@ public class HashTest {
 				return false;
 		} else if (!objectVar.equals(other.objectVar))
 			return false;
+		if (!Arrays.deepEquals(socketArray2Var, other.socketArray2Var))
+			return false;
 		if (!Arrays.equals(socketArrayVar, other.socketArrayVar))
 			return false;
 		if (stringVar == null) {
@@ -113,7 +124,9 @@ public class HashTest {
 			return false;
 		return true;
 	}
-		 
+	 
+	 
+	 
 }
 
 
