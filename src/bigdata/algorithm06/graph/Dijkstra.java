@@ -79,9 +79,39 @@ public class Dijkstra {
 		return path2LenArray;
 	}
 
+	
 }
 
 class Path2Len {
 	public int lastVetrex;
 	public int len;
+	@Override
+	public String toString() {
+		return "Path2Len [lastVetrex=" + lastVetrex + ", len=" + len + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + lastVetrex;
+		result = prime * result + len;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Path2Len other = (Path2Len) obj;
+		if (lastVetrex != other.lastVetrex)
+			return false;
+		if (len != other.len)
+			return false;
+		return true;
+	}
+	
+	
 }
