@@ -22,4 +22,11 @@ public class MyLinkNode {
 		}
 		System.out.println(" ] ");
 	}
+
+	@Override
+	public String toString() {
+		return "MyLinkNode [val=" + val + "]";
+	}
+	
+	
 }

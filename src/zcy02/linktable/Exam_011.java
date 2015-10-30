@@ -13,16 +13,38 @@ public class Exam_011 {
 			else if(p1.val > p2.val){
 				p2 = p2.next;
 			}
-			else{
-				p1.print();
+			else { 
+				System.out.print(  p1.val + "-->"); 
+				p1 = p1.next;
+				p2 = p2.next;
 			}
 		}
+		System.out.println();
 		
 	}
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		MyLinkList linkList = new MyLinkList();
+		linkList.insertOnLast(1);
+		linkList.insertOnLast(2);
+		linkList.insertOnLast(3);
+		linkList.insertOnLast(4); 
+		linkList.insertOnLast(6); 
+		linkList.print();
+		
+		MyLinkList linkList2 = new MyLinkList();  
+		linkList2.insertOnLast(4);
+		linkList2.insertOnLast(5);
+		linkList2.insertOnLast(6);
+		linkList2.insertOnLast(7);
+		linkList2.insertOnLast(8);
+		linkList2.insertOnLast(9);
+		linkList2.print();
+		
+		linkList2.tail = linkList.tail;
+		
+		printCommon(linkList.head, linkList2.head);
 
 	}
 

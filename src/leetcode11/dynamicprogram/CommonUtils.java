@@ -12,7 +12,7 @@ public class CommonUtils {
 		}
 		System.out.println();
 		for (int i = 0; i < m; i++) {
-			System.out.print(a1[i] + "\t ");
+			System.out.print(a1[i] + ", ");
 		}
 		System.out.println();
 	}

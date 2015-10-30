@@ -1,6 +1,6 @@
 package zcy02.linktable;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
+
 
 public class MyLinkList {
 
