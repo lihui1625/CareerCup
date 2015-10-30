@@ -1,4 +1,4 @@
-package bigdata.algorithm06.graph;
+package algorithm.graph;
 
  
 import java.util.Arrays;

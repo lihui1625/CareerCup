@@ -1,4 +1,4 @@
-package bigdata.algorithm06.graph;
+package algorithm.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import java.util.Stack;
 import java.util.TreeMap;
 
  
-public class UnweightedGraph {
+public class BFS_DFS {
 
 
     private final List<String> vertexes = new ArrayList<String>();
@@ -177,7 +177,7 @@ public class UnweightedGraph {
 
 
     public static void main(String[] args) {
-        UnweightedGraph g = new UnweightedGraph();
+        BFS_DFS g = new BFS_DFS();
         g.addVertexes("a");
         g.addVertexes("b");
         g.addVertexes("c");
