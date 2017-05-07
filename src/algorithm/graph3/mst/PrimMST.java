@@ -8,101 +8,101 @@ import java.util.TreeMap;
 
 public class PrimMST {
 
-	private EdgeWeightedGraph g;
-	private Edge[] edgeTo;
-	private double[] distTo;
-	private boolean[] marked;
-	private TreeMap<Double, HashSet<Integer>> dist2VMap;
-	private List<Edge> mst;
-	private double totalWeight;
- 
-	public PrimMST(EdgeWeightedGraph eg, int start) {
-		super();
-		this.g = eg;
- 		edgeTo = new Edge[eg.vNum()];
-		distTo = new double[eg.vNum()];
-		marked = new boolean[eg.vNum()]; 
-		dist2VMap = new TreeMap<>();
+  private EdgeWeightedGraph g;
+  private Edge[] edgeTo;
+  private double[] distTo;
+  private boolean[] marked;
+  private TreeMap<Double, HashSet<Integer>> dist2VMap;
+  private List<Edge> mst;
+  private double totalWeight;
 
-		for (int i = 0; i < eg.vNum(); i++) {
-			distTo[i] = Double.POSITIVE_INFINITY;
-		}
+  public PrimMST(EdgeWeightedGraph eg, int start) {
+    super();
+    this.g = eg;
+    edgeTo = new Edge[eg.vNum()];
+    distTo = new double[eg.vNum()];
+    marked = new boolean[eg.vNum()];
+    dist2VMap = new TreeMap<>();
 
-		distTo[start] = 0d; 
-		dist2VMap.put(distTo[start], new HashSet<Integer>());
-		dist2VMap.get(distTo[start]).add(start);
+    for (int i = 0; i < eg.vNum(); i++) {
+      distTo[i] = Double.POSITIVE_INFINITY;
+    }
 
-		while (!dist2VMap.isEmpty()) {
-			Double firstDist = dist2VMap.firstEntry().getKey();
-			HashSet<Integer> firstVset = dist2VMap.firstEntry().getValue();
-			if (!firstVset.isEmpty()) {
-				Integer v = (Integer) firstVset.toArray()[0];
-				firstVset.remove(v);
-				visit(v);
-			}
-			if (firstVset.isEmpty()) {
-				dist2VMap.remove(firstDist);
-			}
-		}
-		
-		mst = new LinkedList<>();
-		for (int i = 0; i < eg.vNum(); i++) {
+    distTo[start] = 0d;
+    dist2VMap.put(distTo[start], new HashSet<Integer>());
+    dist2VMap.get(distTo[start]).add(start);
 
-			if (edgeTo[i] != null) {
-				mst.add(edgeTo[i]);
-				totalWeight += edgeTo[i].weight();
-				//totalWeight += distTo[i] ;
-			}
-		}
+    while (!dist2VMap.isEmpty()) {
+      Double firstDist = dist2VMap.firstEntry().getKey();
+      HashSet<Integer> firstVset = dist2VMap.firstEntry().getValue();
+      if (!firstVset.isEmpty()) {
+        Integer v = (Integer) firstVset.toArray()[0];
+        firstVset.remove(v);
+        visit(v);
+      }
+      if (firstVset.isEmpty()) {
+        dist2VMap.remove(firstDist);
+      }
+    }
 
-	}
+    mst = new LinkedList<>();
+    for (int i = 0; i < eg.vNum(); i++) {
 
-	private void visit(int v) {		
-		marked[v] = true;
-		Set<Edge> edgeSet = g.getEdge(v);
-		for (Edge edge : edgeSet) {
-			int w = edge.otherVertex(v);
-			if (marked[w]) {
-				continue;
-			}
+      if (edgeTo[i] != null) {
+        mst.add(edgeTo[i]);
+        totalWeight += edgeTo[i].weight();
+        // totalWeight += distTo[i] ;
+      }
+    }
 
-			if (distTo[w] > edge.weight()) {
+  }
 
-				double oldDist = distTo[w];
-				edgeTo[w] = edge;
-				distTo[w] = edge.weight();
-				double newDist = distTo[w];
+  private void visit(int v) {
+    marked[v] = true;
+    Set<Edge> edgeSet = g.getEdge(v);
+    for (Edge edge : edgeSet) {
+      int w = edge.otherVertex(v);
+      if (marked[w]) {
+        continue;
+      }
 
-				if (dist2VMap.containsKey(oldDist)) {
-					 dist2VMap.get(oldDist).remove(w); 
-				}				
-				if (!dist2VMap.containsKey(newDist)) {
-					dist2VMap.put(newDist, new HashSet<Integer>());
-				}
-				dist2VMap.get(newDist).add(w);
-			}
-		}
-	}
+      if (distTo[w] > edge.weight()) {
 
-	public List<Edge> mst() {
-		return mst;
-	}
+        double oldDist = distTo[w];
+        edgeTo[w] = edge;
+        distTo[w] = edge.weight();
+        double newDist = distTo[w];
 
-	public double totalWeight() {
-		return totalWeight;
-	}
+        if (dist2VMap.containsKey(oldDist)) {
+          dist2VMap.get(oldDist).remove(w);
+        }
+        if (!dist2VMap.containsKey(newDist)) {
+          dist2VMap.put(newDist, new HashSet<Integer>());
+        }
+        dist2VMap.get(newDist).add(w);
+      }
+    }
+  }
 
-	@Override
-	public String toString() {
-		return "LazyPrimMST [mst=" + mst + ", totalWeight=" + totalWeight + "]";
-	}
+  public List<Edge> mst() {
+    return mst;
+  }
 
-	public static void main(String[] args) {
-		EdgeWeightedGraph eg = EdgeWeightedGraph.createTinyGC();
-		System.out.println(eg);
-		PrimMST lp = new PrimMST(eg, 5);
-		System.out.println(lp);
+  public double totalWeight() {
+    return totalWeight;
+  }
 
-	}
+  @Override
+  public String toString() {
+    return "LazyPrimMST [mst=" + mst + ", totalWeight=" + totalWeight + "]";
+  }
+
+  public static void main(String[] args) {
+    EdgeWeightedGraph eg = EdgeWeightedGraph.createTinyGC();
+    System.out.println(eg);
+    PrimMST lp = new PrimMST(eg, 5);
+    System.out.println(lp);
+
+  }
 
 }
